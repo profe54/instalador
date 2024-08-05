@@ -285,15 +285,14 @@ system_node_install() {
   apt-get install -y nodejs
   sleep 2
   npm install -g npm@latest
-EOF
-
-  # sleep 2
-  # sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-  # wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-  # sudo apt-get update -y && sudo apt-get -y install postgresql
-  # sleep 2
-  # sudo timedatectl set-timezone America/Sao_Paulo
+  sleep 2
+  sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  sudo apt-get update -y && sudo apt-get -y install postgresql
+  sleep 2
+  sudo timedatectl set-timezone America/Sao_Paulo
   
+EOF
 
   sleep 2
 }
@@ -302,27 +301,27 @@ EOF
 # Arguments:
 #   None
 #######################################
-# system_docker_install() {
-#  print_banner
-#  printf "${WHITE} 💻 Instalando docker...${GRAY_LIGHT}"
-#  printf "\n\n"
-#
-#  sleep 2
-#
-#  sudo su - root <<EOF
-#  apt install -y apt-transport-https \
-#                ca-certificates curl \
-#                 software-properties-common
+system_docker_install() {
+  print_banner
+  printf "${WHITE} 💻 Instalando docker...${GRAY_LIGHT}"
+  printf "\n\n"
 
-#  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  sleep 2
+
+  sudo su - root <<EOF
+  apt install -y apt-transport-https \
+                 ca-certificates curl \
+                 software-properties-common
+
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   
-#  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 
-#  apt install -y docker-ce
-# EOF
+  apt install -y docker-ce
+EOF
 
-#  sleep 2
-# }
+  sleep 2
+}
 
 #######################################
 # Ask for file location containing
