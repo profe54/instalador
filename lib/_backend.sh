@@ -217,7 +217,7 @@ backend_start_pm2() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/backend
-  pm2 start dist/server.js --name ${instancia_add}-backend
+  pm2 start dist/server.js --name ${instancia_add}-backend  -i max --max-memory-restart 500M --restart-delay 5000
 EOF
 
   sleep 2
