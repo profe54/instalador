@@ -128,7 +128,7 @@ frontend_start_pm2() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/frontend
-  pm2 start server.js --name ${instancia_add}-frontend  -i max --max-memory-restart 500M --restart-delay 5000
+  pm2 start server.js --name ${instancia_add}-frontend --max-memory-restart 500M --restart-delay 5000
   pm2 save
 EOF
 
